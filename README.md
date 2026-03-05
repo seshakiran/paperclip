@@ -205,6 +205,15 @@ Yes. A single deployment can run an unlimited number of companies with complete 
 **How is Paperclip different from agents like OpenClaw or Claude Code?**
 Paperclip _uses_ those agents. It orchestrates them into a company — with org charts, budgets, goals, governance, and accountability.
 
+**What API providers are supported?**
+Paperclip supports multiple LLM providers for agent execution:
+- **Groq** - Ultra-fast LLM inference
+- **DeepSeek** - Excellent coding models at competitive prices  
+- **Minimax** - High-performance language models
+- **Z.ai** - Access to open-weight models (Qwen, Llama, Mistral)
+- **Perplexity** - Real-time web search with citations
+- **Together AI** - Wide variety of open-source models
+
 **Why should I use Paperclip instead of just pointing my OpenClaw to Asana or Trello?**
 Agent orchestration has subtleties in how you coordinate who has work checked out, how to maintain sessions, monitoring costs, establishing governance - Paperclip does this for you.
 
