@@ -31,6 +31,55 @@ import {
   agentConfigurationDoc as openclawAgentConfigurationDoc,
   models as openclawModels,
 } from "@paperclipai/adapter-openclaw";
+// New API-based adapters
+import {
+  execute as minimaxExecute,
+  testEnvironment as minimaxTestEnvironment,
+} from "@paperclipai/adapter-minimax/server";
+import {
+  agentConfigurationDoc as minimaxAgentConfigurationDoc,
+  models as minimaxModels,
+} from "@paperclipai/adapter-minimax";
+import {
+  execute as zaiExecute,
+  testEnvironment as zaiTestEnvironment,
+} from "@paperclipai/adapter-zai/server";
+import {
+  agentConfigurationDoc as zaiAgentConfigurationDoc,
+  models as zaiModels,
+} from "@paperclipai/adapter-zai";
+import {
+  execute as groqExecute,
+  testEnvironment as groqTestEnvironment,
+} from "@paperclipai/adapter-groq/server";
+import {
+  agentConfigurationDoc as groqAgentConfigurationDoc,
+  models as groqModels,
+} from "@paperclipai/adapter-groq";
+import {
+  execute as deepseekExecute,
+  testEnvironment as deepseekTestEnvironment,
+} from "@paperclipai/adapter-deepseek/server";
+import {
+  agentConfigurationDoc as deepseekAgentConfigurationDoc,
+  models as deepseekModels,
+} from "@paperclipai/adapter-deepseek";
+import {
+  execute as perplexityExecute,
+  testEnvironment as perplexityTestEnvironment,
+} from "@paperclipai/adapter-perplexity/server";
+import {
+  agentConfigurationDoc as perplexityAgentConfigurationDoc,
+  models as perplexityModels,
+} from "@paperclipai/adapter-perplexity";
+import {
+  execute as togetherExecute,
+  testEnvironment as togetherTestEnvironment,
+} from "@paperclipai/adapter-together/server";
+import {
+  agentConfigurationDoc as togetherAgentConfigurationDoc,
+  models as togetherModels,
+} from "@paperclipai/adapter-together";
 import { listCodexModels } from "./codex-models.js";
 import { listCursorModels } from "./cursor-models.js";
 import { processAdapter } from "./process/index.js";
@@ -87,8 +136,77 @@ const openclawAdapter: ServerAdapterModule = {
   agentConfigurationDoc: openclawAgentConfigurationDoc,
 };
 
+// New API-based adapters
+const minimaxAdapter: ServerAdapterModule = {
+  type: "minimax",
+  execute: minimaxExecute,
+  testEnvironment: minimaxTestEnvironment,
+  models: minimaxModels,
+  supportsLocalAgentJwt: false,
+  agentConfigurationDoc: minimaxAgentConfigurationDoc,
+};
+
+const zaiAdapter: ServerAdapterModule = {
+  type: "zai",
+  execute: zaiExecute,
+  testEnvironment: zaiTestEnvironment,
+  models: zaiModels,
+  supportsLocalAgentJwt: false,
+  agentConfigurationDoc: zaiAgentConfigurationDoc,
+};
+
+const groqAdapter: ServerAdapterModule = {
+  type: "groq",
+  execute: groqExecute,
+  testEnvironment: groqTestEnvironment,
+  models: groqModels,
+  supportsLocalAgentJwt: false,
+  agentConfigurationDoc: groqAgentConfigurationDoc,
+};
+
+const deepseekAdapter: ServerAdapterModule = {
+  type: "deepseek",
+  execute: deepseekExecute,
+  testEnvironment: deepseekTestEnvironment,
+  models: deepseekModels,
+  supportsLocalAgentJwt: false,
+  agentConfigurationDoc: deepseekAgentConfigurationDoc,
+};
+
+const perplexityAdapter: ServerAdapterModule = {
+  type: "perplexity",
+  execute: perplexityExecute,
+  testEnvironment: perplexityTestEnvironment,
+  models: perplexityModels,
+  supportsLocalAgentJwt: false,
+  agentConfigurationDoc: perplexityAgentConfigurationDoc,
+};
+
+const togetherAdapter: ServerAdapterModule = {
+  type: "together",
+  execute: togetherExecute,
+  testEnvironment: togetherTestEnvironment,
+  models: togetherModels,
+  supportsLocalAgentJwt: false,
+  agentConfigurationDoc: togetherAgentConfigurationDoc,
+};
+
 const adaptersByType = new Map<string, ServerAdapterModule>(
-  [claudeLocalAdapter, codexLocalAdapter, opencodeLocalAdapter, cursorLocalAdapter, openclawAdapter, processAdapter, httpAdapter].map((a) => [a.type, a]),
+  [
+    claudeLocalAdapter,
+    codexLocalAdapter,
+    opencodeLocalAdapter,
+    cursorLocalAdapter,
+    openclawAdapter,
+    minimaxAdapter,
+    zaiAdapter,
+    groqAdapter,
+    deepseekAdapter,
+    perplexityAdapter,
+    togetherAdapter,
+    processAdapter,
+    httpAdapter,
+  ].map((a) => [a.type, a]),
 );
 
 export function getServerAdapter(type: string): ServerAdapterModule {
